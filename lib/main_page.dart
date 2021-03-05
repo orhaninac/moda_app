@@ -1,14 +1,61 @@
 import 'package:flutter/material.dart';
 
+import 'details.dart';
+
 class AnaSayfa extends StatefulWidget {
   @override
   _AnaSayfaState createState() => _AnaSayfaState();
 }
 
-class _AnaSayfaState extends State<AnaSayfa> {
+class _AnaSayfaState extends State<AnaSayfa>
+    with SingleTickerProviderStateMixin {
+  TabController tabController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    tabController = TabController(length: 4, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Material(
+        color: Colors.white,
+        child: TabBar(
+            indicatorColor: Colors.transparent,
+            controller: tabController,
+            tabs: [
+              Icon(
+                Icons.more,
+                color: Colors.grey,
+                size: 35,
+              ),
+              Icon(
+                Icons.play_arrow,
+                color: Colors.grey,
+                size: 35,
+              ),
+              Icon(
+                Icons.navigation,
+                color: Colors.grey,
+                size: 35,
+              ),
+              Icon(
+                Icons.supervised_user_circle,
+                color: Colors.grey,
+                size: 35,
+              ),
+            ]),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -108,7 +155,10 @@ class _AnaSayfaState extends State<AnaSayfa> {
                           width: 10,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width - 160,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width - 160,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -139,7 +189,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     SizedBox(height: 15),
                     Text(
                       "This official website features a ribbed knit zipper jacket that is"
-                      "modern and stylish. It looks very temparament and is recommend to friends",
+                          "modern and stylish. It looks very temparament and is recommend to friends",
                       style: TextStyle(fontFamily: "Montserrat"),
                     ),
                     SizedBox(
@@ -147,14 +197,29 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     ),
                     Row(
                       children: [
-                        Container(
-                          height: 200,
-                          width: (MediaQuery.of(context).size.width - 50) / 2,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              image: DecorationImage(
-                                  image: AssetImage("assets/modelgrid1.jpeg"),
-                                  fit: BoxFit.cover)),
+                        InkWell(
+                          onTap: () {
+                            Navigator
+                                .of(context)
+                                .push(
+                                MaterialPageRoute(
+                                    builder: (context) => DetailsPage(imgPath:"assets/modelgrid1.jpeg")));
+                            },
+                          child: Hero(
+                            tag: "assets/modelgrid1.jpeg",
+                            child: Container(
+                              height: 200,
+                              width: (MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width - 50) / 2,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  image: DecorationImage(
+                                      image: AssetImage("assets/modelgrid1.jpeg"),
+                                      fit: BoxFit.cover)),
+                            ),
+                          ),
                         ),
                         SizedBox(
                           width: 10,
@@ -162,30 +227,60 @@ class _AnaSayfaState extends State<AnaSayfa> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 95,
-                              width:
-                                  (MediaQuery.of(context).size.width - 100) / 2,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  image: DecorationImage(
-                                      image:
+                            InkWell(
+                              onTap: () {
+                                Navigator
+                                    .of(context)
+                                    .push(
+                                    MaterialPageRoute(
+                                        builder: (context) => DetailsPage(imgPath:"assets/modelgrid2.jpeg")));
+                              },
+                              child: Hero(
+                                tag: "assets/modelgrid2.jpeg",
+                                child: Container(
+                                  height: 95,
+                                  width:
+                                  (MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width - 100) / 2,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      image: DecorationImage(
+                                          image:
                                           AssetImage("assets/modelgrid2.jpeg"),
-                                      fit: BoxFit.cover)),
+                                          fit: BoxFit.cover)),
+                                ),
+                              ),
                             ),
                             SizedBox(
                               height: 10,
                             ),
-                            Container(
-                              height: 95,
-                              width:
-                                  (MediaQuery.of(context).size.width - 100) / 2,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  image: DecorationImage(
-                                      image:
+                            InkWell(
+                              onTap: () {
+                                Navigator
+                                    .of(context)
+                                    .push(
+                                    MaterialPageRoute(
+                                        builder: (context) => DetailsPage(imgPath:"assets/modelgrid3.jpeg")));
+                              },
+                              child: Hero(
+                                tag: "assets/modelgrid3.jpeg",
+                                child: Container(
+                                  height: 95,
+                                  width:
+                                  (MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width - 100) / 2,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      image: DecorationImage(
+                                          image:
                                           AssetImage("assets/modelgrid3.jpeg"),
-                                      fit: BoxFit.cover)),
+                                          fit: BoxFit.cover)),
+                                ),
+                              ),
                             ),
                           ],
                         )
@@ -240,7 +335,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     SizedBox(
                       height: 10,
                     ),
-                    //PAYLAŞ YORUM VE BEĞENİ 
+                    //PAYLAŞ YORUM VE BEĞENİ
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -360,9 +455,9 @@ class _AnaSayfaState extends State<AnaSayfa> {
           ),
           child: Center(
               child: Text(
-            "Follow",
-            style: TextStyle(color: Colors.white),
-          )),
+                "Follow",
+                style: TextStyle(color: Colors.white),
+              )),
         )
       ],
     );
